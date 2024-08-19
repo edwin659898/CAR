@@ -108,6 +108,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
 
+                        {{-- fsc non confomance un used --}}
+                        <li class="nav-item">
+                            <a href="{{route('non.IDconformFSC')}}" class="nav-link {{ (request()->is('Non-confomance-FSCID')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-tree text-white"></i>
+                                <p class="text-white">
+                                    New FSC Non-conformance
+                                </p>
+                            </a>
+                        </li>
+{{-- fsc non confomance un used --}}
+
                         <li class="nav-item">
                             <a href="{{route('auditee.respond')}}" class="nav-link {{(request()->segment(1) == 'Auditee-Response') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-reply-all text-white"></i>
@@ -116,6 +127,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
+
+                        {{--  --}}
+                        <li class="nav-item">
+                            <a href="{{route('fscauditee.respond')}}" class="nav-link {{(request()->segment(1) == 'FSCAuditee-Response') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-reply-all text-white"></i>
+                                <p class="text-white">
+                                    Respond to FSC NC
+                                </p>
+                            </a>
+                        </li>
+                        {{--  --}}
 
                         <li class="nav-item">
                             <a href="{{route('Viewyear.plan')}}" class="nav-link {{ (request()->is('View-Year-Plan')) ? 'active' : '' }}">
@@ -287,6 +309,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
+                        {{-- card fsc --}}
+                        <li class="nav-item">
+                            <a href="{{route('car.logs')}}" class="nav-link {{ (request()->is('CAR-Logs') || request()->is('Selected-CAR*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-book text-white"></i>
+                                <p class="text-white">
+                                    CAR FSC logs
+                                </p>
+                            </a>
+                        </li>
+                        {{--  --}}
 
                         <li class="nav-item">
                             <a href="{{route('admin.car.logs')}}" class="nav-link {{ (request()->is('admin-CAR-Logs') || request()->is('admin-selected-CAR/*')) ? 'active' : '' }}">
@@ -296,6 +328,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
+
+                        {{-- Admin fsc logs --}}
+
+                        <li class="nav-item">
+                            <a href="{{route('admin.car.logs')}}" class="nav-link {{ (request()->is('admin-CAR-Logs') || request()->is('admin-selected-CAR/*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-book text-white"></i>
+                                <p class="text-white">
+                                    Admin FSC logs
+                                </p>
+                            </a>
+                        </li>
+                        {{--  --}}
                         
 
                         <li class="nav-item">

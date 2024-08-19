@@ -45,12 +45,23 @@ class AuditController extends Controller
         $selectedTask = $id;
         return view('car.newNonconformance', compact('selectedTask'));
     }
+    public function FSCnonconformance($id)
+    {
+        $selectedTask = $id;
+        return view('car.FSCnewNonconformance', compact('selectedTask'));
+    }
 
     public function edit($id)
     {
         $nonConformance = Audits::findOrFail($id);
         $users = User::all();
         return view('car.edit', compact('nonConformance', 'users'));
+    }
+    public function editFSC($id)
+    {
+        $nonConformance = Audits::findOrFail($id);
+        $users = User::all();
+        return view('car.editFSC', compact('FSCnewNonconformance', 'users'));
     }
 
     public function update(Request $request, Audits $nonConformance)
@@ -82,6 +93,38 @@ class AuditController extends Controller
 
         return redirect('/Auditee-Response')->with('message', 'Updated');
     }
+
+    // 
+    public function updateFSC(Request $request, Audits $FSCnonConformance)
+    {
+        abort_unless($FSCnonConformance->status == 'pending' || $FSCnonConformance->status == 'HOD declined', 403, 'NOT ALLOWED TO EDIT');
+
+        $data = $request->validate([
+            'response_id' => 'required',
+            'site' => 'required',
+            'department' => 'required',
+            'clause' => 'required',
+            'checkbox' => 'required',
+            'report' => 'required',
+        ]);
+
+        $updating = $FSCnonConformance->update($data);
+        $auditee = User::findOrFail($request->response_id)->name;
+        $FSCnonConformance->update(['auditee' => $auditee,  'status' => 'pending']);
+
+        if ($request->solutionId) {
+            foreach ($request->solutionId as $key => $solutionId) {
+                $solution = Response::findorFail($solutionId);
+                $solution->update([
+                    'cause' => $request->cause[$key], 'proposed_solution' => $request->proposed_solution[$key],
+                    'proposed_date' => $request->proposed_date[$key]
+                ]);
+            }
+        }
+
+        return redirect('/FSCAuditee-Response')->with('message', 'Updated');
+    }
+    // 
 
     public function Forestry()
     {

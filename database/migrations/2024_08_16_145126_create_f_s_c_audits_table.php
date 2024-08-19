@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAuditsTable extends Migration
+class CreateFSCAuditsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAuditsTable extends Migration
      */
     public function up()
     {
-        Schema::create('audits', function (Blueprint $table) {
+        Schema::create('f_s_c_audits', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->unsignedBigInteger('response_id');
@@ -28,6 +28,7 @@ class CreateAuditsTable extends Migration
             $table->string('site');
             $table->string('department');
             $table->string('clause');
+            $table->string('name');
             $table->string('checkbox');
             $table->text('report');
             $table->string('status')->default('pending');
@@ -52,6 +53,6 @@ class CreateAuditsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('audits');
+        Schema::dropIfExists('f_s_c_audits');
     }
 }

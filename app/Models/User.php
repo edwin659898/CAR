@@ -51,5 +51,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function audits(){
         return $this->hasMany(Audits::class);
     }
+    public function fscaudits(){
+        return $this->hasMany(FSCAudits::class);
+    }
     
 }

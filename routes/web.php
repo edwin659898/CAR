@@ -6,10 +6,12 @@ use App\Http\Livewire\AssignedTasks;
 use App\Http\Livewire\AssignRole;
 use App\Http\Livewire\CarLogs;
 use App\Http\Livewire\ClosedCar;
+use App\Http\Livewire\FSCNonIdNonconformance;
 use App\Http\Livewire\LogCar;
 use App\Http\Livewire\MyOwnNonConform;
 use App\Http\Livewire\NonIdNonconformance;
 use App\Http\Livewire\Response;
+use App\Http\Livewire\ResponseFSC;
 use App\Http\Livewire\ViewTasks;
 use App\Http\Livewire\ViewYearPlan;
 use App\Http\Livewire\YearlyPlan;
@@ -86,12 +88,17 @@ Route::middleware(['auth'])->group(function () {
             Route::view('/closed-CARS', 'car.closed-car')->name('closed.car');
             //Logs
             Route::view('/CAR-Logs', 'car.logs')->name('car.logs');
-            //Admin Logs
-            Route::view('/admin-CAR-Logs', 'car.admin-logs')->name('admin.car.logs');
-            //selected Car logs
-            Route::get('/Selected-CAR/{id}', LogCar::class)->name('car.selected');
-            //selected Car Admin Log
-            Route::get('/admin-selected-CAR/{id}', AdminLogCar::class)->name('admin.car.selected');
+
+        //Closed CARs
+        Route::view('/closed-CARS', 'car.closed-car')->name('closed.car');
+        //Logs
+        Route::view('/CAR-Logs', 'car.logs')->name('car.logs');
+        //Admin Logs
+        Route::view('/admin-CAR-Logs', 'car.admin-logs')->name('admin.car.logs');
+        //selected Car logs
+        Route::get('/Selected-CAR/{id}', LogCar::class)->name('car.selected');
+        //selected Car Admin Log
+        Route::get('/admin-selected-CAR/{id}', AdminLogCar::class)->name('admin.car.selected');
         });
 
         //ViewYearlyPlan
@@ -100,17 +107,33 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/My-Tasks', AssignedTasks::class)->name('assigned.Task');
         //Auditee Response
         Route::get('/Auditee-Response', Response::class)->name('auditee.respond');
+        // FSC Auditee Response
+        Route::get('/FSCAuditee-Response', ResponseFSC::class)->name('fscauditee.respond');
+
+
         //Edit Nonconformance
         Route::get('/Edit-Non-Conformance-{id}', [App\Http\Controllers\AuditController::class, 'edit'])->name('edit');
+        // Fsc Nonconfomance
+        Route::get('/Edit-Non-ConformanceFSC-{id}', [App\Http\Controllers\AuditController::class, 'edit'])->name('edit');
         //Follow Up
         Route::get('/Follow-Up', [App\Http\Controllers\AuditController::class, 'followUp'])->name('follow');
         //Update Nonconformance
         Route::patch('/update-Non-Conformance-{nonConformance}', [App\Http\Controllers\AuditController::class, 'update'])->name('update');
+        //Update NonconformanceFSC
+        Route::patch('/update-Non-ConformanceFSC-{nonConformanceFSC}', [App\Http\Controllers\AuditController::class, 'update'])->name('update');
         //Post Checklist
         Route::get('/Task-Response', [App\Http\Controllers\AuditController::class, 'taskresponse'])->name('task.response');
         //New Nonconformance
         Route::get('/PrepareNew-Non-Conformance-{id}', [App\Http\Controllers\AuditController::class, 'nonconformance'])->name('new.audit');
-    });
+        //New NonconformanceFSC
+        Route::get('/PrepareNew-Non-ConformanceFSC-{id}', [App\Http\Controllers\AuditController::class, 'nonconformanceFSC'])->name('new.audit');
+
+
+        //Edit Nonconformance
+        Route::get('/Edit-Non-Conformance-{id}', [App\Http\Controllers\AuditController::class, 'edit'])->name('edit');
+        // Fsc Nonconfomance
+        Route::get('/Edit-Non-ConformanceFSC-{id}', [App\Http\Controllers\AuditController::class, 'edit'])->name('edit');
+   });
     //MY Non-conformances
     Route::get('/Home', MyOwnNonConform::class)->name('home');
     //Non-Conformance file
@@ -119,6 +142,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/View/{id}/image', [App\Http\Controllers\AuditController::class, 'image'])->name('view.image');
     //NonId Nonconformance
     Route::get('/Non-confomance-NonID', NonIdNonconformance::class)->name('non.IDconform');
+    //Nonid NonconfomanceFSC
+    Route::get('/Non-confomance-FSCID', FSCNonIdNonconformance::class)->name('non.IDconformFSC');
+   
+
 });
 
 Route::post('/file-upload', [App\Http\Controllers\AuditController::class, 'fileUpload']);
