@@ -2,6 +2,13 @@
 
 use App\Http\Livewire\AddMonitoringactivity;
 use App\Http\Livewire\AdminLogCar;
+
+use App\Http\Livewire\AdminLog;
+use App\Http\Livewire\AdminLogFSC;
+use App\Http\Livewire\CarFSCLogs;
+use App\Http\Livewire\LogCarFSC;
+use App\Http\Livewire\ClosedCarFSC;
+
 use App\Http\Livewire\AssignedTasks;
 use App\Http\Livewire\AssignRole;
 use App\Http\Livewire\CarLogs;
@@ -36,6 +43,10 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
     return view('car.logs');
+});
+// fsc logs on CAR display
+Route::get('/tests', function () {
+    return view('car.logsFSC');
 });
 
 Route::get('/email/verify', function () {
@@ -89,6 +100,7 @@ Route::middleware(['auth'])->group(function () {
             //Logs
             Route::view('/CAR-Logs', 'car.logs')->name('car.logs');
 
+
         //Closed CARs
         Route::view('/closed-CARS', 'car.closed-car')->name('closed.car');
         //Logs
@@ -97,11 +109,34 @@ Route::middleware(['auth'])->group(function () {
         Route::view('/admin-CAR-Logs', 'car.admin-logs')->name('admin.car.logs');
         //selected Car logs
         Route::get('/Selected-CAR/{id}', LogCar::class)->name('car.selected');
+        Route::get('/Selected-FSCCAR/{id}', LogCarFSC::class)->name('car.selectedfsc');
         //selected Car Admin Log
         Route::get('/admin-selected-CAR/{id}', AdminLogCar::class)->name('admin.car.selected');
+
+
+        
+
+    
+            // closed CAR FSC
+            Route::view('/closed-CARS', 'car.closed-car')->name('closed.car');
+
+            // fsc car logs
+            Route::view('/CAR-Logs', 'car.logs')->name('car.logs');
+
+
+        //Closed CARs fsc
+        Route::view('/closed-CARS', 'car.closed-FSCcar')->name('closed.car');
+        //Logs fsc
+        Route::view('/CAR-FSCLogs', 'car.logsFSC')->name('car.logsFSC');
+        //Admin Logs fsc
+        Route::view('/admin-CAR-FSCLogs', 'car.admin-logsfsc')->name('admin.car.logsFSC');
+        //selected Car logs
+        Route::get('/Selected-FSCCAR/{id}', LogCarFSC::class)->name('car.fscselected');
+        //selected Car Admin Log
+        Route::get('/admin-selected-FSCCAR/{id}', AdminLogFSC::class)->name('admin.car.fscselected');
         });
 
-        //ViewYearlyPlan
+        //ViewYearly
         Route::get('/View-Year-Plan', ViewYearPlan::class)->name('Viewyear.plan');
         //AssignedTask
         Route::get('/My-Tasks', AssignedTasks::class)->name('assigned.Task');
@@ -114,25 +149,25 @@ Route::middleware(['auth'])->group(function () {
         //Edit Nonconformance
         Route::get('/Edit-Non-Conformance-{id}', [App\Http\Controllers\AuditController::class, 'edit'])->name('edit');
         // Fsc Nonconfomance
-        Route::get('/Edit-Non-ConformanceFSC-{id}', [App\Http\Controllers\AuditController::class, 'edit'])->name('edit');
+        Route::get('/Edit-Non-ConformanceFSC-{id}', [App\Http\Controllers\AuditControllerFSC::class, 'edit'])->name('edit');
         //Follow Up
         Route::get('/Follow-Up', [App\Http\Controllers\AuditController::class, 'followUp'])->name('follow');
         //Update Nonconformance
         Route::patch('/update-Non-Conformance-{nonConformance}', [App\Http\Controllers\AuditController::class, 'update'])->name('update');
         //Update NonconformanceFSC
-        Route::patch('/update-Non-ConformanceFSC-{nonConformanceFSC}', [App\Http\Controllers\AuditController::class, 'update'])->name('update');
+        Route::patch('/update-Non-ConformanceFSC-{nonConformanceFSC}', [App\Http\Controllers\AuditControllerFSC::class, 'update'])->name('update');
         //Post Checklist
         Route::get('/Task-Response', [App\Http\Controllers\AuditController::class, 'taskresponse'])->name('task.response');
         //New Nonconformance
         Route::get('/PrepareNew-Non-Conformance-{id}', [App\Http\Controllers\AuditController::class, 'nonconformance'])->name('new.audit');
         //New NonconformanceFSC
-        Route::get('/PrepareNew-Non-ConformanceFSC-{id}', [App\Http\Controllers\AuditController::class, 'nonconformanceFSC'])->name('new.audit');
+        Route::get('/PrepareNew-Non-ConformanceFSC-{id}', [App\Http\Controllers\AuditControllerFSC::class, 'nonconformanceFSC'])->name('new.audit');
 
 
         //Edit Nonconformance
         Route::get('/Edit-Non-Conformance-{id}', [App\Http\Controllers\AuditController::class, 'edit'])->name('edit');
         // Fsc Nonconfomance
-        Route::get('/Edit-Non-ConformanceFSC-{id}', [App\Http\Controllers\AuditController::class, 'edit'])->name('edit');
+        Route::get('/Edit-Non-ConformanceFSC-{id}', [App\Http\Controllers\AuditControllerFSC::class, 'edit'])->name('edit');
    });
     //MY Non-conformances
     Route::get('/Home', MyOwnNonConform::class)->name('home');

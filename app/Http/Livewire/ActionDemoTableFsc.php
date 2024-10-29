@@ -2,19 +2,20 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Audits;
+use App\Models\FSCAudits;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\NumberColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
-class AdminLog extends LivewireDatatable
+class ActionDemoTableFsc extends LivewireDatatable
 {
     public $exportable = true;
     public function builder()
     {
-        return Audits::query()
-         ->where('status','!=','closed');
+        return FSCAudits::query()
+         ->where('status','!=','closed')
+         ->where('checkbox','=','Major');
     }
 
     public function columns()
@@ -24,11 +25,11 @@ class AdminLog extends LivewireDatatable
             Column::name('number')->label('CAR No')->searchable(),
             DateColumn::name('created_at')->label('Date Created')->filterable()->format('Y-m-d'),
             Column::name('site')->label('Site')->filterable()->searchable(),
-            // Column::name('name')->label('Name')->searchable(),
             Column::name('auditor')->label('Auditor')->filterable(),
+            Column::name('name')->label('Name')->searchable(),
             Column::name('auditee')->label('Auditee')->filterable(),
             Column::callback(['id'], function ($id) {
-                return view('livewire.admin-log', ['id' => $id]);
+                return view('livewire.action-demo-table-fsc', ['id' => $id]);
             })->excludeFromExport(),
             Column::name('department')->label('Department')->filterable(),
             Column::name('status')->label('Status')->searchable()->filterable(),

@@ -5,12 +5,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-green-500 text-lg">Prepare New FSC Non-Conformance</h1>
+                        <h1 class="m-0 text-green-500 text-lg">Prepare New Non-Conformance</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right text-sm">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Prepare FSC Non-conformance</li>
+                            <li class="breadcrumb-item active">Prepare Non-conformance</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -65,7 +65,7 @@
                                                         <input wire:model="number" type="hidden">
                                                     </div>
                                                 </div>
-                                              
+
                                                 <div class="mt-2">
                                                     <div>
                                                         <label for="disabledSelect" class="text-green-500">Auditor</label>
@@ -73,75 +73,26 @@
                                                     </div>
                                                 </div>
 
-                                                {{-- SELECTION PART --}}
-                                                <div class="container">
-                                                    <label class="text-black-500">Select Auditee</label>
-                                                    <!-- Dropdown menu -->
-                                                    <select id="mainDropdown">
-                                                        <option value="">-- Select Group --</option>
-                                                        <option value="true" {{ $condition ? 'selected' : '' }}>Group Member</option>
-                                                        <option value="false" {{ !$condition ? 'selected' : '' }}>Group Entity</option>
-                                                    </select>
-                                            
-                                                    <!-- Menu to show/hide -->
-
-                                                    <div id="conditionalMenu" style="{{ $condition ? '' : 'display:none;' }}">
-                                                        <!-- Add more menu items here -->
-                                                        
-                                                    <label class="text-black-500">Select Type of Goup Member</label>
-                                                        <select id="mainDropdowns">
-                                                            <option value="true" {{ $conditions ? 'selected' : '' }}>Farmers</option>
-                                                            <option value="false" {{ !$conditions ? 'selected' : '' }}>Plantations</option>
-                                                        </select>                                                       
-                                                    </div>
-                                                 
-                                                    <div id="conditionalMenus" style="{{ $conditions ? '' : 'display:none;' }}">
-                                                        <!-- Add more menu items here -->
-                                                        
-                                                       <label for="disabledSelect" class="text-green-500">Name of the Farmer</label>
-                                                    <input wire:model.defer="name" type="text" class="w-full py-1 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600">
-                                                    @error('name') <span class="text-red-500">{{ $farmer }}</span> @enderror
-                                                    </div>
-                                                </div> 
-                                                     
-                                                  {{-- Selection part --}}
-
-                                                <div class="mt-2 flex">
+                                                <div class="mt-2 flex space-x-2">
                                                     <div class="flex-1">
-                                                        <label for="disabledSelect" class="text-green-500">Send to: </label>
+                                                        <label for="disabledSelect" class="text-green-500">Auditee</label>
                                                         <select wire:model="auditee" type="text" class="w-full py-1 rounded-lg shadow-sm focus:outline-none focus:shadow-outline bg-gray-200 text-gray-600">
-                                                            <option value="">-- Select title --</option>
+                                                            <option value="">-- Select Auditee --</option>
                                                             @foreach($users as $user)
                                                             <option value="{{$user->id}}">{{$user->name}}</option>
                                                             @endforeach
                                                         </select>
+                                                        <input wire:model="auditeeN" type="hidden">
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <label for="disabledSelect" class="text-green-500">Auditee Site</label>
+                                                        <input wire:model="site" type="text" class="w-full py-1 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600" disabled>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <label for="disabledSelect" class="text-green-500">Auditee Department</label>
+                                                        <input wire:model="department" type="text" class="w-full py-1 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline  text-gray-600" disabled>
                                                     </div>
                                                 </div>
-
-                                                @if($usersArray != '')
-                                                <div class="mt-3">
-                                                    <table class="table table-hover text-nowrap">
-                                                        <tbody>
-                                                            @foreach($usersArray as $index => $chosen)
-                                                            <tr>
-                                                                <td>{{$chosen[0]}}</td>
-                                                                <td>{{$chosen[1]}}</td>
-                                                                <td>{{$chosen[2]}}</td>
-                                                                <td>{{$chosen[3]}}</td>
-                                                                <td><i wire:click.prevent="unsetting({{$index}})" class="fas fa-trash text-red-600 hover:text-red-800 cursor-pointer"></i></td>
-                                                            </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                @endif
-
-                                                {{-- <div class="flex-1">
-                                                    <label for="disabledSelect" class="text-green-500">Name of the Farmer</label>
-                                                    <input wire:model.defer="clause" type="text" class="w-full py-1 bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600">
-                                                    @error('clause') <span class="text-red-500">{{ $farmer }}</span> @enderror
-                                                
-                                                </div> --}}
 
                                                 <div class="mt-2 flex space-x-2">
                                                     <div class="flex-1">
@@ -167,7 +118,7 @@
 
                                             <div class="rounded border mt-2 py-3 px-4">
                                                 <div wire:ignore>
-                                                    <label for="note" class="text-green-500">FSC Non conformance</label>
+                                                    <label for="note" class="text-green-500">Non conformance</label>
                                                     <textarea data-note="@this" id="note" wire:model.defer="report" type="text" rows="3" class="w-full bg-gray-200 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600"></textarea>
                                                 </div>
                                                 @error('report') <span class="text-red-500">{{ $message }}</span> @enderror
@@ -202,6 +153,7 @@
                                 </form>
                             </section>
                         </div>
+
                     </div>
 
 
@@ -238,36 +190,7 @@
                     'X-CSRF-TOKEN': '{{csrf_token()}}',
                 }
             },
-       
         });
     </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const dropdown = document.getElementById('mainDropdown');
-        const conditionalMenu = document.getElementById('conditionalMenu');
-
-        dropdown.addEventListener('change', function() {
-            if (dropdown.value === 'true') {
-                conditionalMenu.style.display = '';
-            } else {
-                conditionalMenu.style.display = 'none';
-            }
-        });
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const dropdown = document.getElementById('mainDropdowns');
-        const conditionalMenus = document.getElementById('conditionalMenus');
-
-        dropdown.addEventListener('change', function() {
-            if (dropdown.value === 'true') {
-                conditionalMenus.style.display = '';
-            } else {
-                conditionalMenus.style.display = 'none';
-            }
-        });
-    });
-</script>
     @endpush
 </div>

@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-4">
-                        <h5 class="m-0 text-green-500  text-lg">Admin Car Logs</h5>
+                        <h5 class="m-0 text-green-500  text-lg">Car FSC Logs</h5>
                     </div><!-- /.col -->
                     <div class="col-sm-4 flex justify-center">
                         <svg class="mt-0.5 stroke-current h-9 w-9 animate-spin text-gray-400" wire:loading="wire:loading" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-sm-4">
                         <ol class="breadcrumb float-sm-right text-sm">
-                            <li class="breadcrumb-item active"><a href="{{route('closed.car')}}" class="font-bold">Closed CARs</a></li>
+                            <li class="breadcrumb-item active"><a href="{{route('car.logsFSC')}}" class="font-bold">Logs</a></li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -32,9 +32,7 @@
                     <div class="col-lg-12">
                         <div class="max-w-md mx-auto sm:max-w-7xl">
 
-                            <livewire:admin-log />
-                            
-                            {{-- <livewire.admin-log /> --}}
+                            <livewire:closed />
 
                         </div>
 

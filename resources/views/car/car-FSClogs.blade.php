@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-4">
                     <ol class="breadcrumb float-sm-right text-sm">
-                        <li class="breadcrumb-item active"><a href="{{route('closed.car')}}" class="font-bold">Closed CARs</a></li>
+                        <li class="breadcrumb-item active"><a href="{{route('closed.FSCcar')}}" class="font-bold">Closed CARs</a></li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -67,6 +67,7 @@
                                     <tr>             
                                         <th>CAR No.</th>
                                         <th>Site.</th>
+                                        <th>Name.</th>
                                         <th>Auditor</th>
                                         <th>Audit Date</th>
                                         <th>Auditee</th>
@@ -78,6 +79,7 @@
                                 <tr class="odd gradeX  @if($conformance->followup_end_date != '' && $conformance->followup_end_date < now()->format('Y-m-d')) bg-red-400 @endif">
                                     <td>{{$conformance->number}}</td>
                                     <td>{{$conformance->site}}</td>
+                                    <td>{{$conformance->name}}</td>
                                     <td>{{$conformance->auditor}}</td>
                                     <td>{{$conformance->date}}</td>
                                     <td>{{$conformance->auditee}}</td>
@@ -108,7 +110,7 @@
                                             <h5 class="mt-2.5 font-bold">Monitoring and Evaluation Department</h5>
                                         </header>
                                         <div class="flex justify-center">
-                                            <h6 class="mt-2 font-bold">Corrective Action Report</h6>
+                                            <h6 class="mt-2 font-bold">Corrective Action Report (FSC)</h6>
                                         </div>
                                         <div class="flex justify-center space-x-1 mt-3">
                                             <label for="disabledSelect" class="text-green-500">Status:</label>
@@ -121,7 +123,7 @@
                                                 <div class="flex justify-between">
                                                     <div>
                                                         <label class="text-green-500">Company</label>
-                                                        <p class="form-control-static">Better Globe<br>Forestry</p>
+                                                        <p class="form-control-static">Better Globe Forestry</p>
                                                     </div>
                                                     <div>
                                                         <label class="text-green-500">Date</label>
@@ -155,12 +157,18 @@
                                                         <label class="text-green-500">Site</label>
                                                         <p class="form-control-static">{{$site}}</p>
                                                     </div>
+                                                    
                                                 </div>
 
                                                 <div class="mt-2 flex justify-between">
                                                     <div>
                                                         <label for="disabledSelect" class="text-green-500">Reference</label>
                                                         <p class="form-control-static">{{$clause}}</p>
+                                                    </div>
+
+                                                    <div>
+                                                        <label class="text-green-500">Name</label>
+                                                        <p class="form-control-static">{{$name}}</p>
                                                     </div>
 
                                                 </div>

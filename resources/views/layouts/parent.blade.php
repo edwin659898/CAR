@@ -307,7 +307,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         {{-- car fsc logs --}}
                         <li class="nav-item">
-                            <a href="{{route('car.logs')}}" class="nav-link {{ (request()->is('CAR-Logs')) ? 'active' : '' }}">
+                            <a href="{{route('car.logsFSC')}}" class="nav-link {{ (request()->is('CAR-FSCLogs')) ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-book text-white"></i>
                                 <p class="text-white">
                                     CAR FSC logs
@@ -322,17 +322,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     Admin logs
                                 </p>
                             </a>
-                        </li>
+                        </li>    
 
                         {{-- Admin fsc --}}
-                        <li class="nav-item">
-                            <a href="{{route('admin.car.logs')}}" class="nav-link {{ (request()->is('admin-CAR-Logs') || request()->is('admin-selected-CAR/*')) ? 'active' : '' }}">
+                        {{-- <li class="nav-item">
+                            <a href="{{route('admin.car.logsFSC')}}" class="nav-link {{ (request()->is('admin-CAR-FSCLogs') || request()->is('admin-selected-CAR/*')) ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-book text-white"></i>
                                 <p class="text-white">
-                                    Admin FSC logs
+                                    Admin FSC Logs
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         {{--  --}}
 
                         <li class="nav-item">

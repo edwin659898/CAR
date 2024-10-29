@@ -111,6 +111,11 @@
                                                         <p class="form-control-static">{{$nonConformance->clause}}</p>
                                                     </div>
 
+                                                    <div>
+                                                        <label for="disabledSelect" class="text-green-500">Name of the Farmer</label>
+                                                        <p class="form-control-static">{{$nonConformance->name}}</p>
+                                                    </div>
+
                                                 </div>
                                             </div>
 

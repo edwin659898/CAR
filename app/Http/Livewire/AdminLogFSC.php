@@ -24,10 +24,11 @@ class AdminLogFSC extends LivewireDatatable
             Column::name('number')->label('CAR No')->searchable(),
             DateColumn::name('created_at')->label('Date Created')->filterable()->format('Y-m-d'),
             Column::name('site')->label('Site')->filterable()->searchable(),
+            // Column::name('name')->label('Name')->searchable(),
             Column::name('auditor')->label('Auditor')->filterable(),
             Column::name('auditee')->label('Auditee')->filterable(),
             Column::callback(['id'], function ($id) {
-                return view('livewire.admin-logFSC', ['id' => $id]);
+                return view('livewire.admin-log-fsc', ['id' => $id]);
             })->excludeFromExport(),
             Column::name('department')->label('Department')->filterable(),
             Column::name('status')->label('Status')->searchable()->filterable(),
